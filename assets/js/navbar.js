@@ -17,13 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Theme toggling logic
-  const toggleTheme = () => {
-    const isDark = document.body.classList.toggle("dark-mode");
-    const icon = isDark ? "sun" : "moon";
-    desktopToggle.innerHTML = `<i class="fas fa-${icon}"></i>`;
-    mobileToggle.innerHTML = `<i class="fas fa-${icon}"></i>`;
-  };
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const themeToggleInput = document.getElementById("input");
 
-  desktopToggle.addEventListener("click", toggleTheme);
-  mobileToggle.addEventListener("click", toggleTheme);
+  // Initialize theme based on toggle
+  if (themeToggleInput.checked) {
+    document.body.classList.add("dark-mode");
+  }
+
+  themeToggleInput.addEventListener("change", () => {
+    document.body.classList.toggle("dark-mode");
+  });
 });
