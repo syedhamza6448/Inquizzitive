@@ -1,23 +1,29 @@
-// Scroll navbar effect
-window.addEventListener("scroll", () => {
-    const navbar = document.getElementById("navbar");
-    if (window.scrollY > 0) {
-        navbar.classList.add("floating");
-    } else {
-        navbar.classList.remove("floating");
-    }
-});
+document.addEventListener("DOMContentLoaded", () => {
+  const navbar = document.getElementById("navbar");
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const desktopToggle = document.getElementById("desktopThemeToggle");
+  const mobileToggle = document.getElementById("mobileThemeToggle");
 
-// Dark mode toggle
-document.getElementById("themeToggle").addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-});
+  // Scroll floating effect
+  window.addEventListener("scroll", () => {
+    navbar.classList.toggle("floating", window.scrollY > 0);
+  });
 
-// Slide menu & hamburger animation
-const hamburger = document.getElementById("hamburger");
-const mobileMenu = document.getElementById("mobileMenu");
-
-hamburger.addEventListener("click", () => {
+  // Hamburger toggle
+  hamburger.addEventListener("click", () => {
     hamburger.classList.toggle("active");
     mobileMenu.classList.toggle("open");
+  });
+
+  // Theme toggling logic
+  const toggleTheme = () => {
+    const isDark = document.body.classList.toggle("dark-mode");
+    const icon = isDark ? "sun" : "moon";
+    desktopToggle.innerHTML = `<i class="fas fa-${icon}"></i>`;
+    mobileToggle.innerHTML = `<i class="fas fa-${icon}"></i>`;
+  };
+
+  desktopToggle.addEventListener("click", toggleTheme);
+  mobileToggle.addEventListener("click", toggleTheme);
 });
