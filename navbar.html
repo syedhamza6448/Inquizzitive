@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav id="navbar" class="navbar">
+            <div class="floating-blobs">
+                <div class="blob blob1"></div>
+                <div class="blob blob2"></div>
+            </div>
+
+            <div class="container">
+                <!-- Left Nav -->
+                <div class="nav-left">
+                    <a href="/">Home</a>
+                    <a href="/about">About</a>
+                    <a href="/contact">Contact</a>
+                </div>
+
+                <!-- Center Logo -->
+                <div class="nav-center">
+                    <a href="/" class="logo">Inquizzitive</a>
+                </div>
+
+                <!-- Right Nav -->
+                <div class="nav-right">
+                    <button id="themeToggle">🌙</button>
+                    <a href="/login">Login</a>
+                    <a href="/register">Sign Up</a>
+                </div>
+
+                <!-- Mobile Menu Icon -->
+                <div class="mobile-toggle" id="hamburger">
+                    <div class="bar top"></div>
+                    <div class="bar middle"></div>
+                    <div class="bar bottom"></div>
+                </div>
+            </div>
+
+            <!-- Slide-down Mobile Menu -->
+            <div id="mobileMenu" class="mobile-menu">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <a href="/login">Login</a>
+                <a href="/register">Sign Up</a>
+            </div>
+        </nav>
+        <!-- <nav>
+            <ul class="nav-links">
+                <a href="home.html">
+                    <li>Home</li>
+                </a>
+                <a href="contact.html">
+                    <li>About</li>
+                </a>
+                <a href="contact.html">
+                    <li>Contact</li>
+                </a>
+            </ul>
+            <h1>Logo</h1>
+            <ul>
+                <button class="theme-mode">
+
+                </button>
+            </ul>
+        </nav> -->
+    </header>
+    <script src="assets/js/navbar.js"></script>
+</body>
+
+</html>
