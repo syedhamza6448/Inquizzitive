@@ -198,6 +198,53 @@ body.dark-mode .hero {
     background: var(--accent);
     animation-duration: 18s;
 }
+.background-icons {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: auto;
+}
+
+.floating-icons {
+  position: absolute;
+  font-size: 2rem;
+  color: var(--accent);
+  transition: transform 0.3s;
+}
+
+/* Octagonal positions (no top/bottom, only sides) */
+.background-icons i:nth-child(1) {
+  top: 20%;
+  left: 0;
+}
+
+.background-icons i:nth-child(2) {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.background-icons i:nth-child(3) {
+  bottom: 20%;
+  left: 0;
+}
+
+.background-icons i:nth-child(4) {
+  top: 20%;
+  right: 0;
+}
+
+.background-icons i:nth-child(5) {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.background-icons i:nth-child(6) {
+  bottom: 20%;
+  right: 0;
+}
+
 
 /* Feature Section */
 .features-scroll-section {
