@@ -3,15 +3,18 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Outfit';
+    /* cursor: none; */
 }
 
 :root {
     --primary: #f0f0f3;
     --accent: #8ecae6;
     --text: #111111;
-    --top-shadow: #FFFFFF;
+    --top-shadow: #f6f1f1;
     --bottom-shadow: #D1D9E6;
     --glow: #1F51FF;
+    --card-width: 80vw;
+    --card-margin: 10vw;
 }
 
 body.dark-mode {
@@ -50,10 +53,11 @@ body::selection {
 }
 
 .hero {
+    position: relative;
     padding-top: 100px;
     padding-bottom: 30px;
     width: 100%;
-    height: fit-content;
+    height: 100vh;
     --color: #E1E1E1;
     background-color: #F3F3F3;
     background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
@@ -98,6 +102,7 @@ body.dark-mode .hero {
 .subtext {
     font-size: 20px;
     margin-bottom: 20px;
+    color: var(--accent);
 }
 
 .cta a {
@@ -109,51 +114,213 @@ body.dark-mode .hero {
         inset -2px -2px 4px var(--bottom-shadow);
     text-decoration: none;
     color: var(--text);
-    /* overflow: hidden; */
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
 }
+
 .cta a::before,
 .cta a::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  background: var(--accent);
-  animation: lineGrow 1s ease-out forwards;
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    background: var(--accent);
+    animation: lineGrow 1s ease-out forwards;
 }
+
 .cta a::before {
-  left: 0;
-  border-radius: 0 2px 2px 0;
-  animation-delay: 0.3s;
+    left: 0;
+    border-radius: 0 2px 2px 0;
+    animation-delay: 0.3s;
 }
+
 .cta a::after {
-  right: 0;
-  border-radius: 2px 0 0 2px;
-  animation-delay: 0.6s;
+    right: 0;
+    border-radius: 2px 0 0 2px;
+    animation-delay: 0.6s;
 }
 
 .cta a:hover {
-    text-shadow: 0 0 25px var(--glow), 0 0 25px var(--glow);
+    box-shadow: inset 2px 2px 4px var(--bottom-shadow),
+        inset -2px -2px 4px var(--top-shadow);
 }
-.feature {
+
+.background-blobs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* allows clicks to pass through */
+    z-index: 0;
+    /* stays under your content */
+    overflow: hidden;
+}
+
+/* Shared blob style */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    animation: floatBlob 20s ease-in-out infinite alternate;
+    background: var(--accent);
+    mix-blend-mode: lighten;
+    /* optional for color interaction */
+}
+
+/* Individual blobs for placement and color control */
+.blob1 {
+    width: 300px;
+    height: 300px;
+    top: 10%;
+    left: 10%;
+    animation-duration: 22s;
+}
+
+.blob2 {
+    width: 400px;
+    height: 400px;
+    bottom: 15%;
+    right: 10%;
+    background: var(--accent);
+    animation-duration: 30s;
+}
+
+.blob3 {
+    width: 250px;
+    height: 250px;
+    top: 60%;
+    left: -3%;
+    background: var(--accent);
+    animation-duration: 18s;
+}
+
+/* Feature Section */
+.features-scroll-section {
+    --color: #E1E1E1;
+    background-color: var(--accent);
+    background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
+    background-size: 55px 55px;
+    position: relative;
+    height: 400vh;
+    background-attachment: fixed;
+}
+body.dark-mode .features-scroll-section {
+    --color: #7272724d;
+    background-color: var(--accent);
+    background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
+    background-size: 55px 55px;
+}
+
+.features-scroll-container {
+    position: sticky;
+    top: 0;
     height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
 }
+.feature-heading {
+    position: absolute;
+    top: 100px;
+    left: 25%;
+    width: 100%;
+    transform: translateX(-50%);
+    color: var(--text);
+    font-size: 3em;
+}
+
+.card-track {
+    display: flex;
+    gap: 40px;
+    padding: 0 calc((100vw - 80vw) / 2);
+    transition: transform 0.4s ease-out;
+    will-change: transform;
+    margin-top: 120px;
+}
+
+
+.feature-card {
+    flex: 0 0 80vw;
+    height: 60vh;
+    border-radius: 20px;
+    background: var(--primary);
+    box-shadow: inset 100px 100px 400px var(--top-shadow),
+    inset -100px -100px 400px var(--bottom-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--text);
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.6s ease-out;
+    padding: 100px;
+}
+.feature-card:hover {
+    box-shadow: inset 100px 100px 200px var(--bottom-shadow),
+        inset -100px -100px 200px var(--top-shadow);
+}
+
+.feature-card.animate {
+    opacity: 1;
+    transform: scale(1);
+}
+.feature-card span .lucide-icon {
+    color: var(--accent);
+    height: 100px;
+    width: 100px;
+}
+.feature-card .fc-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.fc-content h1 {
+    color: var(--accent);
+}
+
+
+
+
+
+
+
 @media screen and (max-width: 768px) {
     .hero .headline {
         justify-content: start;
         flex-direction: column;
     }
+
     .headline .child-2 {
         margin-left: 50px;
     }
+
     .headline .child-3 {
         margin-left: 90px;
     }
+
     .subtext {
         text-align: center;
     }
+
     .illustration-switch {
+        display: none;
+    }
+
+    .background-blobs {
+        display: none;
+    }
+
+    .cursor-circle {
         display: none;
     }
 }
@@ -186,18 +353,60 @@ body.dark-mode .hero {
 }
 
 @keyframes lineGrow {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 0;
-  }
-  50% {
-    height: 5px;
-    opacity: 1;
-  }
-  100% {
-    width: 20px;
-    height: 2px;
-    opacity: 1;
-  }
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    50% {
+        height: 5px;
+        opacity: 1;
+    }
+
+    100% {
+        width: 20px;
+        height: 2px;
+        opacity: 1;
+    }
+}
+
+@keyframes floatBlob {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(40px, -30px) scale(1.1) rotate(5deg);
+    }
+
+    50% {
+        transform: translate(-30px, 20px) scale(0.95) rotate(-3deg);
+    }
+
+    75% {
+        transform: translate(25px, 35px) scale(1.05) rotate(2deg);
+    }
+
+    100% {
+        transform: translate(-20px, -25px) scale(1) rotate(-2deg);
+    }
+}
+
+@keyframes lift {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+        box-shadow: inset 2px 2px 4px var(--top-shadow),
+            inset -2px -2px 4px var(--bottom-shadow);
+    }
+
+    100% {
+        transform: translateY(0px);
+        box-shadow: inset 2px 2px 4px var(--bottom-shadow),
+            inset -2px -2px 4px var(--top-shadow);
+    }
 }
