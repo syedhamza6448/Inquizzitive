@@ -17,6 +17,10 @@
     --card-margin: 10vw;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 body.dark-mode {
     --primary: #1f1f1f;
     --accent: #00c896;
@@ -164,11 +168,11 @@ body.dark-mode .hero {
 .blob {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
+    filter: blur(50px);
     opacity: 0.35;
     animation: floatBlob 20s ease-in-out infinite alternate;
     background: var(--accent);
-    mix-blend-mode: lighten;
+    mix-blend-mode: darken;
     /* optional for color interaction */
 }
 
@@ -176,16 +180,16 @@ body.dark-mode .hero {
 .blob1 {
     width: 300px;
     height: 300px;
-    top: 10%;
-    left: 10%;
+    top: -1%;
+    left: -1%;
     animation-duration: 22s;
 }
 
 .blob2 {
     width: 400px;
     height: 400px;
-    bottom: 15%;
-    right: 10%;
+    bottom: -10%;
+    right: -1%;
     background: var(--accent);
     animation-duration: 30s;
 }
@@ -193,57 +197,73 @@ body.dark-mode .hero {
 .blob3 {
     width: 250px;
     height: 250px;
-    top: 60%;
-    left: -3%;
+    bottom: 1%;
+    left: -5%;
     background: var(--accent);
     animation-duration: 18s;
 }
+
 .background-icons {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  margin: auto;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .floating-icons {
-  position: absolute;
-  font-size: 2rem;
-  color: var(--accent);
-  transition: transform 0.3s;
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    color: var(--accent);
+    font-size: 4rem;
+    transition: transform 1s ease, opacity 1s ease;
 }
 
-/* Octagonal positions (no top/bottom, only sides) */
+/* Icon positions – Octagonal layout (excluding top/bottom) */
 .background-icons i:nth-child(1) {
-  top: 20%;
-  left: 0;
+    left: 5%;
+    top: 20%;
 }
 
 .background-icons i:nth-child(2) {
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .background-icons i:nth-child(3) {
-  bottom: 20%;
-  left: 0;
+    left: 5%;
+    bottom: 20%;
 }
 
 .background-icons i:nth-child(4) {
-  top: 20%;
-  right: 0;
+    right: 5%;
+    top: 20%;
 }
 
 .background-icons i:nth-child(5) {
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .background-icons i:nth-child(6) {
-  bottom: 20%;
-  right: 0;
+    right: 5%;
+    bottom: 20%;
 }
+
+/* Scroll trigger animation (pack to center) */
+.background-icons.scroll-pack i {
+    transform: translate(-50%, -50%) scale(0.2);
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    opacity: 0;
+}
+
+
 
 
 /* Feature Section */
@@ -257,6 +277,7 @@ body.dark-mode .hero {
     height: 400vh;
     background-attachment: fixed;
 }
+
 body.dark-mode .features-scroll-section {
     --color: #7272724d;
     background-color: var(--accent);
@@ -273,14 +294,14 @@ body.dark-mode .features-scroll-section {
     align-items: center;
     overflow: hidden;
 }
+
 .feature-heading {
     position: absolute;
     top: 100px;
-    left: 25%;
     width: 100%;
-    transform: translateX(-50%);
     color: var(--text);
     font-size: 3em;
+    text-align: center;
 }
 
 .card-track {
@@ -299,7 +320,7 @@ body.dark-mode .features-scroll-section {
     border-radius: 20px;
     background: var(--primary);
     box-shadow: inset 100px 100px 400px var(--top-shadow),
-    inset -100px -100px 400px var(--bottom-shadow);
+        inset -100px -100px 400px var(--bottom-shadow);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -312,6 +333,7 @@ body.dark-mode .features-scroll-section {
     transition: all 0.6s ease-out;
     padding: 100px;
 }
+
 .feature-card:hover {
     box-shadow: inset 100px 100px 200px var(--bottom-shadow),
         inset -100px -100px 200px var(--top-shadow);
@@ -321,18 +343,25 @@ body.dark-mode .features-scroll-section {
     opacity: 1;
     transform: scale(1);
 }
+
 .feature-card span .lucide-icon {
     color: var(--accent);
     height: 100px;
     width: 100px;
 }
+
 .feature-card .fc-content {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
+
 .fc-content h1 {
     color: var(--accent);
+}
+
+.mobile-feature-cards {
+    display: none;
 }
 
 
@@ -342,6 +371,10 @@ body.dark-mode .features-scroll-section {
 
 
 @media screen and (max-width: 768px) {
+    .hero {
+        height: fit-content;
+    }
+
     .hero .headline {
         justify-content: start;
         flex-direction: column;
@@ -369,6 +402,65 @@ body.dark-mode .features-scroll-section {
 
     .cursor-circle {
         display: none;
+    }
+
+    /* Feature Section */
+    .feature-heading {
+        font-size: 4em;
+        position: static;
+        z-index: 1;
+        text-align: start;
+        margin-left: 15px;
+        top: 0;
+    }
+
+    .card-track {
+        display: none;
+    }
+
+    .features-scroll-section {
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        flex-direction: column;
+        gap: 20px;
+        padding: 50px 0px;
+    }
+
+    .mobile-feature-cards {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        flex-direction: column;
+        gap: 30px;
+        width: 100%;
+        padding: 50px 10px;
+    }
+
+    .mobile-feature-cards .card {
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        z-index: 2;
+        background: var(--primary);
+        box-shadow: inset 20px 20px 40px var(--top-shadow),
+            inset -20px -20px 40px var(--bottom-shadow);
+            border-radius: 20px;
+            padding: 20px 10px;
+    }
+    .mobile-feature-cards .card .lucide-icon {
+        height: 40px;
+        width: 40px;
+        color: var(--accent);
+    }
+    .mobile-feature-cards .card p {
+        color: var(--accent);
     }
 }
 

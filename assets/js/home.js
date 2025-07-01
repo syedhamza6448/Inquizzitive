@@ -28,20 +28,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-document.addEventListener("DOMContentLoaded", () => {
-    const iconElements = document.querySelectorAll('.floating-icons');
-    const iconNames = ["brain", "puzzle", "earth", "notebook-text", "forward", "share-2"];
-
-    function cycleIcons() {
-      iconElements.forEach(el => {
-        // Pick a random icon name
-        const newIcon = iconNames[Math.floor(Math.random() * iconNames.length)];
-        el.setAttribute('data-lucide', newIcon);
-      });
-      lucide.createIcons(); // Refresh lucide icons
-    }
-
-    // Cycle every 2 seconds
-    setInterval(cycleIcons, 2000);
-  });
