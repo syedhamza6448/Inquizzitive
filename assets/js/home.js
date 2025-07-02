@@ -28,3 +28,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const howItWorksSection = document.querySelector(".how-it-works");
+  const stepStairs = document.querySelector(".steps-stairs");
+  const step1 = document.getElementById("step-1");
+  const step2 = document.getElementById("step-2");
+  const step3 = document.getElementById("step-3");
+
+  function isFullyInView(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+    );
+  }
+
+  function handleScroll() {
+    if (isFullyInView(howItWorksSection)) {
+      // Apply stair-step layout
+      step1.style.transform = "translateX(-400px)";
+      step2.style.transform = "translateX(0)";
+      step3.style.transform = "translateX(350px)";
+      stepStairs.style.gap = "20px"
+    }
+  }
+
+  window.addEventListener("scroll", handleScroll);
+  handleScroll(); // Trigger initially
+});
+
+
