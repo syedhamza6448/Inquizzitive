@@ -58,4 +58,68 @@ document.addEventListener("DOMContentLoaded", () => {
   handleScroll(); // Trigger initially
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const glitchText = document.getElementById("glitch-text");
+  const words = ["Popular", "Latest"];
+  let index = 0;
+
+  setInterval(() => {
+    // Update text
+    index = (index + 1) % words.length;
+    glitchText.textContent = words[index];
+
+    // Re-trigger animation
+    glitchText.classList.remove("glitch-animation");
+    void glitchText.offsetWidth; // Force reflow
+    glitchText.classList.add("glitch-animation");
+  }, 2000);
+});
+
+
+// Modal/Alert
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("quiz-modal");
+  const closeModal = document.getElementById("close-modal");
+
+  const modalTitle = document.getElementById("modal-title");
+  const modalDifficulty = document.getElementById("modal-difficulty");
+  const modalTime = document.getElementById("modal-time");
+  const modalQuestions = document.getElementById("modal-questions");
+  const modalCategory = document.getElementById("modal-category");
+
+  // Attach click listeners to all detail icons
+  document.querySelectorAll(".detail-quiz").forEach((icon) => {
+    icon.addEventListener("click", (e) => {
+      e.preventDefault(); // Prevent link behavior if any
+      e.stopPropagation(); // Stop bubbling
+
+      const card = icon.closest(".quiz-card");
+
+      // Pull data from the clicked card
+      modalTitle.textContent = card.querySelector(".quiz-title").childNodes[0].textContent.trim();
+      modalDifficulty.textContent = card.querySelector(".quiz-difficulty span").textContent;
+      modalTime.textContent = card.querySelector(".quiz-time span").textContent;
+      modalQuestions.textContent = card.querySelector(".quiz-question span").textContent;
+      modalCategory.textContent = card.querySelector(".quiz-category span").textContent;
+
+      // Show the modal
+      modal.style.display = "flex";
+
+      // Re-render icons
+      lucide.createIcons();
+    });
+  });
+
+  // Close the modal
+  closeModal.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  // Close modal if clicked outside content
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+});
 

@@ -32,53 +32,60 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    const cursor = document.querySelector(".cursor-circle");
-    const cursorLabel = document.querySelector(".cursor-label");
+  const cursor = document.querySelector(".cursor-circle");
+  const cursorLabel = document.querySelector(".cursor-label");
 
-    let mouseX = 0, mouseY = 0;
-    let currentX = 0, currentY = 0;
-    let labelTimeout;
+  let mouseX = 0, mouseY = 0;
+  let currentX = 0, currentY = 0;
+  let labelTimeout;
 
-    // Smooth cursor movement
-    window.addEventListener("mousemove", (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+  // Smooth cursor movement
+  window.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function animateCursor() {
+    currentX += (mouseX - currentX) * 0.1;
+    currentY += (mouseY - currentY) * 0.1;
+
+    const scale = cursor.classList.contains("cursor-hovered") ? 2.5 : 1;
+    cursor.style.transform = `translate(${currentX}px, ${currentY}px) scale(${scale})`;
+    requestAnimationFrame(animateCursor);
+  }
+
+  animateCursor();
+
+  const hoverTargets = document.querySelectorAll("a, button, .illustration, .detail-quiz");
+
+  hoverTargets.forEach(el => {
+    el.addEventListener("mouseenter", () => {
+      cursor.classList.add("cursor-hovered");
+
+      const isNavbarLink = el.closest('.nav-left') || el.closest('.nav-right');
+      cursor.classList.toggle("nav-hover", !!isNavbarLink);
+
+      // Custom logic for detail-quiz
+      let labelText;
+      if (el.classList.contains("detail-quiz")) {
+        labelText = "More Details";
+      } else {
+        labelText = el.getAttribute("data-label") || "Click!";
+      }
+
+      cursorLabel.textContent = labelText;
+
+      clearTimeout(labelTimeout);
+      labelTimeout = setTimeout(() => {
+        cursorLabel.textContent = "";
+      }, 5000);
     });
 
-    function animateCursor() {
-        currentX += (mouseX - currentX) * 0.1;
-        currentY += (mouseY - currentY) * 0.1;
-
-        const scale = cursor.classList.contains("cursor-hovered") ? 2.5 : 1;
-        cursor.style.transform = `translate(${currentX}px, ${currentY}px) scale(${scale})`;
-        requestAnimationFrame(animateCursor);
-    }
-
-    animateCursor();
-
-    const hoverTargets = document.querySelectorAll("a, button, .illustration");
-
-    hoverTargets.forEach(el => {
-        el.addEventListener("mouseenter", () => {
-            cursor.classList.add("cursor-hovered");
-
-            const isNavbarLink = el.closest('.nav-left') || el.closest('.nav-right');
-            cursor.classList.toggle("nav-hover", !!isNavbarLink);
-
-            // Show label
-            const labelText = el.getAttribute("data-label") || "Click!";
-            cursorLabel.textContent = labelText;
-
-            clearTimeout(labelTimeout); // Reset timeout if re-entering
-            labelTimeout = setTimeout(() => {
-                cursorLabel.textContent = "";
-            }, 2000); // Hide after 5 seconds
-        });
-
-        el.addEventListener("mouseleave", () => {
-            cursor.classList.remove("cursor-hovered", "nav-hover");
-            cursorLabel.textContent = "";
-            clearTimeout(labelTimeout);
-        });
+    el.addEventListener("mouseleave", () => {
+      cursor.classList.remove("cursor-hovered", "nav-hover");
+      cursorLabel.textContent = "";
+      clearTimeout(labelTimeout);
     });
+  });
+
 });
