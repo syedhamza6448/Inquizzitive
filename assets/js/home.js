@@ -122,3 +122,37 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// CTA Block
+const circle = document.getElementById("cta-circle");
+const ctaContent = document.getElementById("cta-content");
+const ctaBtn = document.querySelector(".cta-btn");
+const ctaWrapper = document.querySelector(".cta-wrapper");
+
+window.addEventListener("scroll", () => {
+  const wrapperTop = ctaWrapper.getBoundingClientRect().top;
+  const wrapperHeight = ctaWrapper.offsetHeight;
+  const windowHeight = window.innerHeight;
+
+  const progress = 1 - (wrapperTop / windowHeight); // value from 0 to >1
+
+  if (progress > 0 && progress < 2) {
+    // Scale and move circle
+    circle.style.transform = `translate(-50%, -${progress * 100}%) scale(${Math.min(progress * 3, 3)})`;
+
+    // Show text and button in middle phase
+    if (progress > 0.5 && progress < 1.5) {
+      ctaContent.style.opacity = "1";
+      ctaBtn.style.opacity = "1";
+    } else {
+      ctaContent.style.opacity = "0";
+      ctaBtn.style.opacity = "0";
+    }
+  } else {
+    circle.style.transform = "translate(-50%, 0%) scale(0)";
+    ctaContent.style.opacity = "0";
+    ctaBtn.style.opacity = "0";
+  }
+});
+
+
+
