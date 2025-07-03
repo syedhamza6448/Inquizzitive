@@ -58,22 +58,21 @@ document.addEventListener("DOMContentLoaded", () => {
   handleScroll(); // Trigger initially
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const glitchText = document.getElementById("glitch-text");
-  const words = ["Popular", "Latest"];
-  let index = 0;
+// document.addEventListener("DOMContentLoaded", () => {
+//   const glitchText = document.getElementById("glitch-text");
+//   const words = ["Popular", "Latest"];
+//   let index = 0;
 
-  setInterval(() => {
-    // Update text
-    index = (index + 1) % words.length;
-    glitchText.textContent = words[index];
+//   setInterval(() => {
+//     index = (index + 1) % words.length;
+//     glitchText.textContent = words[index];
 
-    // Re-trigger animation
-    glitchText.classList.remove("glitch-animation");
-    void glitchText.offsetWidth; // Force reflow
-    glitchText.classList.add("glitch-animation");
-  }, 2000);
-});
+//     glitchText.classList.remove("glitch-animation");
+//     void glitchText.offsetWidth; // Force reflow
+//     glitchText.classList.add("glitch-animation");
+//   }, 2000);
+// });
+// For the use of switcinhg between 2 words in .feature-quiz section
 
 
 // Modal/Alert
