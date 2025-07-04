@@ -1,0 +1,123 @@
+.site-footer {
+  background-color: var(--accent);
+  padding: 50px 20px 20px;
+  color: var(--primary);
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-column {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer-logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.footer-description {
+  font-size: 14px;
+  color: var(--primary);
+  line-height: 1.5;
+}
+
+.footer-column h4 {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--primary);
+  margin-bottom: 5px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.footer-column ul li i {
+  color: var(--primary);
+  height: 18px;
+  width: 18px;
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: var(--primary);
+  transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+  color: var(--text);
+}
+
+.footer-newsletter p {
+  font-size: 13px;
+  color: var(--primary);
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.newsletter-form input[type="email"] {
+  padding: 10px 15px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+}
+
+.newsletter-form button {
+  background-color: var(--primary);
+  color: var(--accent);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+}
+
+.newsletter-form button i {
+  height: 18px;
+  width: 18px;
+}
+
+.newsletter-form button:hover {
+  background-color: var(--text);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  font-size: 13px;
+  color: var(--primary);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 40px;
+}

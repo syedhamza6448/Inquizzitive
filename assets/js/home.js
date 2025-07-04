@@ -127,32 +127,69 @@ const circle = document.getElementById("cta-circle");
 const ctaContent = document.getElementById("cta-content");
 const ctaBtn = document.querySelector(".cta-btn");
 const ctaWrapper = document.querySelector(".cta-wrapper");
+const orText = document.getElementById("cta-or");
+const newsletter = document.getElementById("cta-newsletter");
+
+// Initial state
+ctaContent.style.display = "none";
+ctaBtn.style.display = "none";
+orText.style.display = "none";
+newsletter.style.display = "none";
 
 window.addEventListener("scroll", () => {
   const wrapperTop = ctaWrapper.getBoundingClientRect().top;
-  const wrapperHeight = ctaWrapper.offsetHeight;
   const windowHeight = window.innerHeight;
 
   const progress = 1 - (wrapperTop / windowHeight); // value from 0 to >1
 
-  if (progress > 0 && progress < 2) {
-    // Scale and move circle
+  if (progress > 0 && progress < 2.5) {
+    // Animate the circle
     circle.style.transform = `translate(-50%, -${progress * 100}%) scale(${Math.min(progress * 3, 3)})`;
 
-    // Show text and button in middle phase
-    if (progress > 0.5 && progress < 1.5) {
+    // Show CTA content
+    if (progress > 0.5 && progress < 1.1) {
       ctaContent.style.opacity = "1";
       ctaBtn.style.opacity = "1";
+      ctaContent.style.display = "block";
+      ctaBtn.style.display = "inline";
     } else {
       ctaContent.style.opacity = "0";
       ctaBtn.style.opacity = "0";
+      ctaContent.style.display = "none";
+      ctaBtn.style.display = "none";
+    }
+
+    // Show OR
+    if (progress >= 1.1 && progress < 1.6) {
+      orText.style.opacity = "1";
+      orText.style.display = "block";
+    } else {
+      orText.style.opacity = "0";
+      orText.style.display = "none";
+    }
+
+    // Show Newsletter
+    if (progress >= 1.6) {
+      newsletter.style.opacity = "1";
+      newsletter.style.display = "flex";
+    } else {
+      newsletter.style.opacity = "0";
+      newsletter.style.display = "none";
     }
   } else {
+    // Reset everything when out of view
     circle.style.transform = "translate(-50%, 0%) scale(0)";
     ctaContent.style.opacity = "0";
     ctaBtn.style.opacity = "0";
+    ctaContent.style.display = "none";
+    ctaBtn.style.display = "none";
+    orText.style.opacity = "0";
+    orText.style.display = "none";
+    newsletter.style.opacity = "0";
+    newsletter.style.display = "none";
   }
 });
+
 
 
 

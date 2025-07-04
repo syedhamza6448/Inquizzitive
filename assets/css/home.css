@@ -835,8 +835,8 @@ body.dark-mode .popular-quiz {
 }
 
 .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
 }
@@ -844,6 +844,7 @@ body.dark-mode .popular-quiz {
 .testimonial-card {
     background: var(--primary);
     border-radius: 20px;
+    width: 45%;
     padding: 25px;
     box-shadow: 0 8px 25px var(--bottom-shadow);
     position: relative;
@@ -926,7 +927,7 @@ body.dark-mode .popular-quiz {
     transform: translate(-50%, -50%) scale(0);
     width: 800px;
     height: 800px;
-    background-color: var(--accent);
+    background-color: var(--primary);
     border-radius: 50%;
     z-index: 1;
     transition: transform 0.5s ease-out;
@@ -934,25 +935,26 @@ body.dark-mode .popular-quiz {
 
 .cta-content {
     position: fixed;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: var(--primary);
+    color: var(--accent);
     opacity: 0;
     z-index: 2;
     transition: opacity 0.5s ease-in-out;
+    animation: pulseOr 2s infinite ease-in-out;
 }
 
 .cta-heading {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+    font-size: 3rem;
+    margin-bottom: 50px;
 }
 
 .cta-btn {
     padding: 12px 40px;
-    background: var(--primary);
-    color: var(--accent);
+    background: var(--accent);
+    color: var(--primary);
     border-radius: 40px;
     text-decoration: none;
     font-weight: bold;
@@ -960,6 +962,71 @@ body.dark-mode .popular-quiz {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
+
+.cta-or,
+.cta-newsletter {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    z-index: 2;
+    transition: all 0.5s ease-in-out;
+    text-align: center;
+    color: var(--accent);
+}
+
+.cta-or {
+    top: 40%;
+    font-size: 5rem;
+    font-weight: bold;
+    animation: pulseOr 2s infinite ease-in-out;
+}
+
+.cta-newsletter {
+    top: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.cta-newsletter h3 {
+    font-size: 3rem;
+    color: var(--accent);
+}
+
+.newsletter-form-cta {
+    display: flex;
+    gap: 10px;
+}
+
+.newsletter-form-cta input {
+    padding: 10px 15px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+.newsletter-form-cta button {
+    background-color: var(--accent);
+    color: var(--primary);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.newsletter-form-cta button:hover {
+    background-color: var(--text);
+}
+
 
 
 
@@ -1388,5 +1455,22 @@ body.dark-mode .popular-quiz {
 
     100% {
         transform: translate(-50%, -50%) rotate(0deg);
+    }
+}
+
+@keyframes pulseOr {
+    0% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateX(-50%) scale(1.1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
     }
 }
