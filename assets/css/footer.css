@@ -1,3 +1,23 @@
+:root {
+  --primary: #f0f0f3;
+  --accent: #8ecae6;
+  --text: #111111;
+  --top-shadow: #f6f1f1;
+  --bottom-shadow: #D1D9E6;
+  --glow: #1F51FF;
+  --card-width: 80vw;
+  --card-margin: 10vw;
+}
+
+body.dark-mode {
+  --primary: #1f1f1f;
+  --accent: #00c896;
+  --text: #ffffff;
+  --top-shadow: #2A2A2A;
+  --bottom-shadow: #0D0D0D;
+  --glow: #39FF14;
+}
+
 .site-footer {
   background-color: var(--accent);
   padding: 50px 20px 20px;
@@ -35,7 +55,7 @@
 .footer-column h4 {
   font-size: 16px;
   font-weight: bold;
-  color: var(--primary);
+  color: var(--text);
   margin-bottom: 5px;
 }
 
@@ -53,8 +73,8 @@
   font-size: 14px;
 }
 
-.footer-column ul li i {
-  color: var(--primary);
+.footer-column ul li .footer-icon {
+  color: var(--text);
   height: 18px;
   width: 18px;
 }
@@ -87,6 +107,9 @@
   outline: none;
   font-size: 14px;
   width: 100%;
+  box-shadow: inset 27px 27px 24px var(--bottom-shadow),
+    inset -27px -27px 24px var(--top-shadow);
+  color: var(--text);
 }
 
 .newsletter-form button {
@@ -118,6 +141,6 @@
   padding-top: 30px;
   font-size: 13px;
   color: var(--primary);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--primary);
   margin-top: 40px;
 }

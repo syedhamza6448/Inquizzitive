@@ -1,14 +1,22 @@
 /* === Color Variables === */
 :root {
-  --primary: #ffffff;
-  --accent: #8ecae6;
-  --text: #111111;
+    --primary: #f0f0f3;
+    --accent: #8ecae6;
+    --text: #111111;
+    --top-shadow: #f6f1f1;
+    --bottom-shadow: #D1D9E6;
+    --glow: #1F51FF;
+    --card-width: 80vw;
+    --card-margin: 10vw;
 }
 
 body.dark-mode {
-  --primary: #1f1f1f;
-  --accent: #00c896;
-  --text: #ffffff;
+    --primary: #1f1f1f;
+    --accent: #00c896;
+    --text: #ffffff;
+    --top-shadow: #2A2A2A;
+    --bottom-shadow: #0D0D0D;
+    --glow: #39FF14;
 }
 
 /* === Base Reset === */

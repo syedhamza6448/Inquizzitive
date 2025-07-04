@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Outfit';
-    /* cursor: none; */
 }
 
 :root {
@@ -17,10 +16,6 @@
     --card-margin: 10vw;
 }
 
-body {
-    overflow-x: hidden;
-}
-
 body.dark-mode {
     --primary: #1f1f1f;
     --accent: #00c896;
@@ -28,6 +23,10 @@ body.dark-mode {
     --top-shadow: #2A2A2A;
     --bottom-shadow: #0D0D0D;
     --glow: #39FF14;
+}
+
+body {
+    overflow-x: hidden;
 }
 
 body::selection {
@@ -800,6 +799,8 @@ body.dark-mode .popular-quiz {
     padding-top: 20px;
     z-index: 0;
     border-radius: 10px;
+    text-decoration: none;
+    color: var(--text);
 }
 
 .quiz-author-link img {
@@ -994,6 +995,10 @@ body.dark-mode .popular-quiz {
     font-size: 3rem;
     color: var(--accent);
 }
+.cta-newsletter p {
+    color: var(--text);
+    font-size: 1.5rem;
+}
 
 .newsletter-form-cta {
     display: flex;
@@ -1006,6 +1011,9 @@ body.dark-mode .popular-quiz {
     border: none;
     outline: none;
     font-size: 14px;
+    box-shadow: inset 27px 27px 24px var(--bottom-shadow),
+    inset -27px -27px 24px var(--top-shadow);
+    color: var(--text);
 }
 
 .newsletter-form-cta button {
@@ -1292,6 +1300,11 @@ body.dark-mode .popular-quiz {
     .quiz-container {
         grid-template-columns: 1fr;
         padding: 20px;
+    }
+
+    /* Testimonials */
+    .testimonial-card {
+        width: 100%;
     }
 }
 

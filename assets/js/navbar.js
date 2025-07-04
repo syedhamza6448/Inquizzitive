@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   animateCursor();
 
-  const hoverTargets = document.querySelectorAll("a, button, .illustration, .detail-quiz .quiz-link");
+  const hoverTargets = document.querySelectorAll("a, button, .illustration, .detail-quiz, .quiz-link, button[type='submit']");
 
   hoverTargets.forEach(el => {
     el.addEventListener("mouseenter", () => {
