@@ -29,6 +29,11 @@ body {
   /* height: 200vh; */
 }
 
+body::selection {
+    background-color: var(--accent);
+    color: var(--text);
+}
+
 header {
   max-height: fit-content;
 }
@@ -497,7 +502,6 @@ body.dark-mode .navbar.floating {
   pointer-events: none;
   z-index: 9999;
   background-color: var(--accent);
-  /* use your neon or accent color */
   mix-blend-mode: difference;
   transform: translate(-50%, -50%);
   transition: transform 0.08s ease-out;
@@ -530,13 +534,12 @@ body.dark-mode .navbar.floating {
 
 .cursor-circle.cursor-hovered .cursor-label {
   opacity: 1;
-  top: -30px; /* above cursor */
+  top: -30px; 
   transform: translateY(0);
 }
 
-/* Label below cursor specifically for navbar links */
 .cursor-circle.nav-hover .cursor-label {
-  top: 30px; /* below cursor */
+  top: 30px;
 }
 
 

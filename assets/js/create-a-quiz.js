@@ -31,22 +31,27 @@ const primaryColor = document.getElementById("primaryColor")
 const accentColor = document.getElementById("accentColor")
 const textColor = document.getElementById("textColor")
 const primaryPreview = document.getElementById("primaryPreview")
-const accentPreview = document.getElementById("accentPreview")
+const themeSkeleton = document.getElementById("themeSkeleton")
+const primarySkeletonBar = document.getElementById("primarySkeletonBar")
 const createQuizBtn = document.getElementById("createQuizBtn")
 
-// Lucide icon library
-const lucide = {
-  createIcons: () => {
-    // Placeholder for icon creation logic
-    console.log("Icons created")
-  },
-}
+// Quiz Preview Elements
+const previewTitle = document.getElementById("previewTitle")
+const previewCategory = document.getElementById("previewCategory")
+const previewDifficulty = document.getElementById("previewDifficulty")
+const previewTimer = document.getElementById("previewTimer")
+const previewProgressText = document.getElementById("previewProgressText")
+const previewProgressFill = document.getElementById("previewProgressFill")
+const previewQuestionNumber = document.getElementById("previewQuestionNumber")
+const previewQuestionText = document.getElementById("previewQuestionText")
+const previewOptions = document.getElementById("previewOptions")
 
 // Initialize the quiz builder
 function init() {
   renderQuestions()
   setupEventListeners()
   updateQuestionCounter()
+  updateQuizPreview()
 }
 
 // Setup event listeners
@@ -61,6 +66,7 @@ function setupEventListeners() {
   // Basic form inputs
   document.getElementById("quizTitle").addEventListener("input", (e) => {
     quizData.title = e.target.value
+    updateQuizPreview()
   })
 
   document.getElementById("quizDescription").addEventListener("input", (e) => {
@@ -69,14 +75,17 @@ function setupEventListeners() {
 
   document.getElementById("quizDifficulty").addEventListener("change", (e) => {
     quizData.difficulty = e.target.value
+    updateQuizPreview()
   })
 
   document.getElementById("quizCategory").addEventListener("change", (e) => {
     quizData.category = e.target.value
+    updateQuizPreview()
   })
 
   document.getElementById("timeLimit").addEventListener("input", (e) => {
     quizData.timeLimit = Number.parseInt(e.target.value) || 1
+    updateQuizPreview()
   })
 }
 
@@ -87,7 +96,7 @@ function renderQuestions() {
     const questionElement = createQuestionElement(question, index)
     questionsContainer.appendChild(questionElement)
   })
-  lucide.createIcons() // Re-initialize icons
+  updateQuizPreview()
 }
 
 // Create a single question element
@@ -100,7 +109,7 @@ function createQuestionElement(question, index) {
         ${
           quizData.questions.length > 1
             ? `
-            <button class="remove-btn" onclick="removeQuestion(${question.id})" style='font-size: 2rem;'>&times</button>
+            <button class="remove-btn" onclick="removeQuestion(${question.id})" style='font-size: 2rem;'>&times;</button>
         `
             : ""
         }
@@ -174,6 +183,7 @@ function updateQuestion(questionId, field, value) {
   const question = quizData.questions.find((q) => q.id === questionId)
   if (question) {
     question[field] = value
+    updateQuizPreview()
   }
 }
 
@@ -182,12 +192,14 @@ function updateQuestionOption(questionId, optionIndex, value) {
   const question = quizData.questions.find((q) => q.id === questionId)
   if (question) {
     question.options[optionIndex] = value
+    updateQuizPreview()
   }
 }
 
 // Update question counter
 function updateQuestionCounter() {
   questionCount.textContent = quizData.questions.length
+  updateQuizPreview()
 }
 
 // Handle theme change
@@ -213,19 +225,103 @@ function updateThemePreview() {
 
     quizData.customColors = { primary, accent, text }
 
-    primaryPreview.style.backgroundColor = primary
-    primaryPreview.style.color = text
-    accentPreview.style.backgroundColor = accent
-    accentPreview.style.color = text
+    // Update theme skeleton
+    themeSkeleton.style.backgroundColor = primary
+    primarySkeletonBar.style.backgroundColor = accent
+    primarySkeletonBar.style.color = text
+
+    // Update quiz preview with custom colors
+    updateQuizPreviewColors(primary, accent, text)
+  } else {
+    resetThemePreview()
   }
 }
 
 // Reset theme preview
 function resetThemePreview() {
-  primaryPreview.style.backgroundColor = "var(--primary)"
-  primaryPreview.style.color = "var(--text)"
-  accentPreview.style.backgroundColor = "var(--accent)"
-  accentPreview.style.color = "var(--text)"
+  themeSkeleton.style.backgroundColor = "var(--primary)"
+  primarySkeletonBar.style.backgroundColor = "var(--accent)"
+  primarySkeletonBar.style.color = "var(--text)"
+
+  // Reset quiz preview colors
+  updateQuizPreviewColors("var(--primary)", "var(--accent)", "var(--text)")
+}
+
+// Update quiz preview colors
+function updateQuizPreviewColors(primary, accent, text) {
+  const previewContainer = document.getElementById("quizPreviewContainer")
+  if (previewContainer) {
+    previewContainer.style.backgroundColor = primary
+    previewContainer.style.color = text
+
+    // Update badges
+    const badges = previewContainer.querySelectorAll(".quiz-preview-badge")
+    badges.forEach((badge) => {
+      badge.style.backgroundColor = accent
+      badge.style.color = text
+    })
+
+    // Update option letters
+    const optionLetters = previewContainer.querySelectorAll(".option-letter")
+    optionLetters.forEach((letter) => {
+      letter.style.backgroundColor = accent
+      letter.style.color = text
+    })
+
+    // Update progress fill
+    const progressFill = previewContainer.querySelector(".progress-fill")
+    if (progressFill) {
+      progressFill.style.backgroundColor = accent
+    }
+
+    // Update navigation buttons
+    const navBtns = previewContainer.querySelectorAll(".nav-btn")
+    navBtns.forEach((btn) => {
+      btn.style.backgroundColor = accent
+      btn.style.color = text
+    })
+  }
+}
+
+// Update quiz preview
+function updateQuizPreview() {
+  // Update title
+  previewTitle.textContent = quizData.title || "Sample Quiz Title"
+
+  // Update category and difficulty
+  previewCategory.textContent = quizData.category
+  previewDifficulty.textContent = quizData.difficulty
+
+  // Update timer
+  const minutes = Math.floor(quizData.timeLimit)
+  const seconds = (quizData.timeLimit % 1) * 60
+  previewTimer.textContent = `${minutes}:${seconds.toString().padStart(2, "0")}`
+
+  // Update progress
+  const totalQuestions = quizData.questions.length
+  previewProgressText.textContent = `Question 1 of ${totalQuestions}`
+  previewProgressFill.style.width = `${(1 / totalQuestions) * 100}%`
+
+  // Update question display
+  const firstQuestion = quizData.questions[0]
+  if (firstQuestion) {
+    previewQuestionNumber.textContent = "Question 1"
+    previewQuestionText.textContent = firstQuestion.question || "What is your sample question?"
+
+    // Update options
+    const optionElements = previewOptions.querySelectorAll(".quiz-option")
+    optionElements.forEach((optionEl, index) => {
+      const optionText = optionEl.querySelector(".option-text")
+      if (optionText) {
+        optionText.textContent = firstQuestion.options[index] || `Sample Option ${String.fromCharCode(65 + index)}`
+      }
+    })
+  }
+
+  // Apply current theme colors if custom theme is selected
+  if (quizData.theme === "custom") {
+    updateQuizPreviewColors(quizData.customColors.primary, quizData.customColors.accent, quizData.customColors.text)
+  }
 }
 
 // Create quiz
@@ -305,6 +401,7 @@ function resetForm() {
   renderQuestions()
   updateQuestionCounter()
   handleThemeChange()
+  updateQuizPreview()
 }
 
 // Initialize when DOM is loaded
