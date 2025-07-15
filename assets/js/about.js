@@ -1,144 +1,130 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Horizontal scroll tracking for section titles
-  const uniqueContainer = document.getElementById("uniqueContainer")
-  const valuesContainer = document.getElementById("valuesContainer")
-  const uniqueTitle = document.getElementById("uniqueTitle")
-  const valuesTitle = document.getElementById("valuesTitle")
+  // Horizontal scroll tracking for sticky headers
+  const scrollSections = document.querySelectorAll(".horizontal-scroll-section")
 
-  // Function to handle scroll tracking
-  function handleScrollTracking(container, title) {
-    if (!container || !title) return
+  scrollSections.forEach((section) => {
+    const container = section.querySelector(".horizontal-scroll-container")
+    const title = section.querySelector(".scroll-section-title")
 
-    container.addEventListener("scroll", () => {
-      const scrollLeft = container.scrollLeft
-      const maxScroll = container.scrollWidth - container.clientWidth
-      const scrollProgress = maxScroll > 0 ? scrollLeft / maxScroll : 0
+    if (container && title) {
+      container.addEventListener("scroll", () => {
+        const scrollPercentage = container.scrollLeft / (container.scrollWidth - container.clientWidth)
+        const hue = scrollPercentage * 60 // Change hue from 0 to 60 degrees
+        title.style.filter = `hue-rotate(${hue}deg)`
+      })
+    }
+  })
 
-      // Add visual feedback based on scroll progress
-      const opacity = 0.7 + scrollProgress * 0.3
-      title.style.opacity = opacity
+  // Smooth scroll for internal links
+  const internalLinks = document.querySelectorAll('a[href^="#"]')
+  internalLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault()
+      const targetId = link.getAttribute("href").substring(1)
+      const targetElement = document.getElementById(targetId)
 
-      // Add subtle color change based on scroll
-      const hue = 200 + scrollProgress * 20 // Shift from blue to cyan
-      title.style.color = `hsl(${hue}, 60%, 60%)`
-    })
-  }
-
-  // Initialize scroll tracking
-  handleScrollTracking(uniqueContainer, uniqueTitle)
-  handleScrollTracking(valuesContainer, valuesTitle)
-
-  // Smooth scroll behavior for horizontal containers
-  function addSmoothScrolling(container) {
-    if (!container) return
-
-    let isScrolling = false
-    let scrollTimeout
-
-    container.addEventListener("scroll", () => {
-      if (!isScrolling) {
-        container.style.scrollBehavior = "smooth"
-        isScrolling = true
-      }
-
-      clearTimeout(scrollTimeout)
-      scrollTimeout = setTimeout(() => {
-        isScrolling = false
-      }, 150)
-    })
-  }
-
-  // Add smooth scrolling to containers
-  addSmoothScrolling(uniqueContainer)
-  addSmoothScrolling(valuesContainer)
-
-  // Add keyboard navigation for horizontal scroll
-  function addKeyboardNavigation(container) {
-    if (!container) return
-
-    container.addEventListener("keydown", (e) => {
-      const cardWidth = 370 // Card width + gap
-
-      switch (e.key) {
-        case "ArrowLeft":
-          e.preventDefault()
-          container.scrollBy({ left: -cardWidth, behavior: "smooth" })
-          break
-        case "ArrowRight":
-          e.preventDefault()
-          container.scrollBy({ left: cardWidth, behavior: "smooth" })
-          break
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        })
       }
     })
+  })
 
-    // Make container focusable
-    container.setAttribute("tabindex", "0")
+  // Counter animation for stats
+  const observerOptions = {
+    threshold: 0.5,
+    rootMargin: "0px 0px -100px 0px",
   }
 
-  // Add keyboard navigation
-  addKeyboardNavigation(uniqueContainer)
-  addKeyboardNavigation(valuesContainer)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const statNumbers = entry.target.querySelectorAll(".stat-number")
+        statNumbers.forEach((stat) => {
+          const finalValue = stat.textContent
+          const numericValue = Number.parseInt(finalValue.replace(/\D/g, ""))
+          const suffix = finalValue.replace(/[\d,]/g, "")
 
-  // Add scroll indicators
-  function addScrollIndicators(container) {
-    if (!container) return
-
-    const indicator = document.createElement("div")
-    indicator.className = "scroll-indicator"
-    indicator.innerHTML = `
-      <div class="scroll-dots">
-        <span class="scroll-hint">Scroll horizontally →</span>
-      </div>
-    `
-
-    container.parentElement.appendChild(indicator)
-
-    // Hide indicator after first scroll
-    let hasScrolled = false
-    container.addEventListener("scroll", () => {
-      if (!hasScrolled) {
-        indicator.style.opacity = "0"
-        hasScrolled = true
-        setTimeout(() => {
-          indicator.remove()
-        }, 300)
+          animateCounter(stat, 0, numericValue, suffix, 2000)
+        })
+        observer.unobserve(entry.target)
       }
     })
+  }, observerOptions)
+
+  const missionSection = document.querySelector(".mission-section")
+  if (missionSection) {
+    observer.observe(missionSection)
   }
 
-  // Add scroll indicators for desktop only
-  if (window.innerWidth > 768) {
-    addScrollIndicators(uniqueContainer)
-    addScrollIndicators(valuesContainer)
-  }
-})
+  function animateCounter(element, start, end, suffix, duration) {
+    const startTime = performance.now()
+    const range = end - start
 
-// Add CSS for scroll indicators
-const style = document.createElement("style")
-style.textContent = `
-  .scroll-indicator {
-    text-align: center;
-    padding: 1rem;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-  }
+    function updateCounter(currentTime) {
+      const elapsed = currentTime - startTime
+      const progress = Math.min(elapsed / duration, 1)
 
-  .scroll-hint {
-    color: var(--accent);
-    font-size: 0.9rem;
-    opacity: 0.7;
-    animation: pulse 2s infinite;
+      // Easing function for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4)
+      const current = Math.floor(start + range * easeOutQuart)
+
+      element.textContent = formatNumber(current) + suffix
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter)
+      }
+    }
+
+    requestAnimationFrame(updateCounter)
   }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
+  function formatNumber(num) {
+    if (num >= 1000000) {
+      return (num / 1000000).toFixed(1) + "M"
+    } else if (num >= 1000) {
+      return (num / 1000).toFixed(0) + "K"
+    }
+    return num.toString()
   }
 
-  @media (max-width: 768px) {
-    .scroll-indicator {
-      display: none;
+  // Parallax effect for floating blobs
+  let ticking = false
+
+  function updateParallax() {
+    const scrolled = window.pageYOffset
+    const parallaxElements = document.querySelectorAll(".floating-blob")
+
+    parallaxElements.forEach((element, index) => {
+      const speed = 0.5 + index * 0.1
+      const yPos = -(scrolled * speed)
+      element.style.transform = `translateY(${yPos}px)`
+    })
+
+    ticking = false
+  }
+
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax)
+      ticking = true
     }
   }
-`
-document.head.appendChild(style)
+
+  window.addEventListener("scroll", requestTick)
+
+  // Enhanced hover effects for cards
+  const cards = document.querySelectorAll(".horizontal-card, .story-card, .mission-card, .cta-card")
+
+  cards.forEach((card) => {
+    card.addEventListener("mouseenter", () => {
+      card.style.transform = "translateY(-10px) scale(1.02)"
+    })
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "translateY(0) scale(1)"
+    })
+  })
+})

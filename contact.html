@@ -31,7 +31,7 @@
     <div class="cursor-circle">
         <span class="cursor-label">Click!</span>
     </div>
-    
+
     <header>
         <nav id="navbar" class="navbar">
             <div class="floating-blobs">
@@ -156,7 +156,8 @@
         <section class="contact-hero" data-aos="fade-up" data-aos-duration="1000">
             <div class="hero-content">
                 <h1 class="hero-title">Get in <span class="accent-text">Touch</span></h1>
-                <p class="hero-subtitle">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                <p class="hero-subtitle">We'd love to hear from you. Send us a message and we'll respond as soon as
+                    possible.</p>
             </div>
         </section>
 
@@ -191,7 +192,8 @@
 
                         <div class="form-group">
                             <label for="contactMessage">Message</label>
-                            <textarea id="contactMessage" name="message" rows="5" required data-label="Enter your message"></textarea>
+                            <textarea id="contactMessage" name="message" rows="5" required
+                                data-label="Enter your message"></textarea>
                         </div>
 
                         <button type="submit" class="submit-btn" data-label="Send Message">
@@ -221,25 +223,26 @@
 
                         <div class="form-group">
                             <label for="reviewOccupation">Occupation</label>
-                            <input type="text" id="reviewOccupation" name="occupation" required data-label="Enter your occupation">
+                            <input type="text" id="reviewOccupation" name="occupation" required
+                                data-label="Enter your occupation">
                         </div>
 
                         <div class="form-group">
                             <label for="rating">Rating</label>
                             <div class="star-rating" id="starRating">
-                                <span class="star" data-rating="1" data-label="1 Star">
+                                <span class="star" data-rating="1">
                                     <i data-lucide="star"></i>
                                 </span>
-                                <span class="star" data-rating="2" data-label="2 Stars">
+                                <span class="star" data-rating="2">
                                     <i data-lucide="star"></i>
                                 </span>
-                                <span class="star" data-rating="3" data-label="3 Stars">
+                                <span class="star" data-rating="3">
                                     <i data-lucide="star"></i>
                                 </span>
-                                <span class="star" data-rating="4" data-label="4 Stars">
+                                <span class="star" data-rating="4">
                                     <i data-lucide="star"></i>
                                 </span>
-                                <span class="star" data-rating="5" data-label="5 Stars">
+                                <span class="star" data-rating="5">
                                     <i data-lucide="star"></i>
                                 </span>
                             </div>
@@ -248,7 +251,8 @@
 
                         <div class="form-group">
                             <label for="reviewText">Your Review</label>
-                            <textarea id="reviewText" name="review" rows="5" required data-label="Share your experience"></textarea>
+                            <textarea id="reviewText" name="review" rows="5" required
+                                data-label="Share your experience"></textarea>
                         </div>
 
                         <button type="submit" class="submit-btn" data-label="Submit Review">
@@ -264,7 +268,7 @@
         <section class="contact-info-section" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
             <div class="container">
                 <h2 class="section-title">Other Ways to <span class="accent-text">Reach Us</span></h2>
-                
+
                 <div class="contact-info-grid">
                     <div class="info-card" data-aos="zoom-in" data-aos-delay="100">
                         <div class="info-icon" data-label="Email Us">
@@ -272,7 +276,8 @@
                         </div>
                         <h3>Email</h3>
                         <p>support@inquizzitive.com</p>
-                        <a href="mailto:support@inquizzitive.com" class="info-link" data-label="Send Email">Send Email</a>
+                        <a href="mailto:support@inquizzitive.com" class="info-link" data-label="Send Email">Send
+                            Email</a>
                     </div>
 
                     <div class="info-card" data-aos="zoom-in" data-aos-delay="200">
@@ -339,9 +344,12 @@
                 <h4>Explore</h4>
                 <ul>
                     <li><i class="footer-icon" data-lucide="home"></i> <a href="index.html">Home</a></li>
-                    <li><i class="footer-icon" data-lucide="sparkles"></i> <a href="index.html#popular-quizzes">Popular Quizzes</a></li>
-                    <li><i class="footer-icon" data-lucide="plus-circle"></i> <a href="create-a-quiz.html">Create Quiz</a></li>
-                    <li><i class="footer-icon" data-lucide="list-checks"></i> <a href="my-quizzes.html">My Quizzes</a></li>
+                    <li><i class="footer-icon" data-lucide="sparkles"></i> <a href="index.html#popular-quizzes">Popular
+                            Quizzes</a></li>
+                    <li><i class="footer-icon" data-lucide="plus-circle"></i> <a href="create-a-quiz.html">Create
+                            Quiz</a></li>
+                    <li><i class="footer-icon" data-lucide="list-checks"></i> <a href="my-quizzes.html">My Quizzes</a>
+                    </li>
                 </ul>
             </div>
 
@@ -380,6 +388,49 @@
         AOS.init();
         lucide.createIcons();
     </script>
+    <script>
+        const stars = document.querySelectorAll('.star-rating .star');
+        const ratingValue = document.getElementById('ratingValue');
+
+        let currentRating = 0;
+
+        stars.forEach((star, index) => {
+            // Hover
+            star.addEventListener('mouseover', () => {
+                clearHover();
+                for (let i = 0; i <= index; i++) {
+                    stars[i].classList.add('hovered');
+                }
+            });
+
+            // Leave
+            star.addEventListener('mouseout', () => {
+                clearHover();
+            });
+
+            // Click
+            star.addEventListener('click', () => {
+                currentRating = index + 1;
+                ratingValue.value = currentRating;
+                updateStars();
+            });
+        });
+
+        function updateStars() {
+            stars.forEach((star, idx) => {
+                if (idx < currentRating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        function clearHover() {
+            stars.forEach(star => star.classList.remove('hovered'));
+        }
+    </script>
+
 </body>
 
 </html>
