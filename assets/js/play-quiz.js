@@ -324,7 +324,7 @@ function retakeQuiz() {
 
 // Go to home page
 function goHome() {
-  window.location.href = "/"
+  window.location.href = "index.html"
 }
 
 // Quit quiz

@@ -27,9 +27,11 @@
 </head>
 
 <body>
+    <!-- Cursor Circle - Now available on all pages -->
     <div class="cursor-circle">
         <span class="cursor-label">Click!</span>
     </div>
+    
     <header>
         <nav id="navbar" class="navbar">
             <div class="floating-blobs">
@@ -40,14 +42,14 @@
             <div class="container">
                 <!-- Left Nav -->
                 <div class="nav-left">
-                    <a href="/">Home</a>
-                    <a href="/about">About</a>
-                    <a href="/contact">Contact</a>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
                 </div>
 
                 <!-- Center Logo -->
                 <div class="nav-center">
-                    <a href="/" class="logo">Inquizzitive</a>
+                    <a href="index.html" class="logo">Inquizzitive</a>
                 </div>
 
                 <!-- Right Nav -->
@@ -118,11 +120,9 @@
                     </div>
                 </label>
                 <div class="nav-right">
-                    <a href="/login">Login</a>
-                    <a href="/register">Sign Up</a>
+                    <a href="login.html">Login</a>
+                    <a href="register.html">Sign Up</a>
                 </div>
-
-                <!-- Theme Toggles -->
 
                 <!-- Hamburger -->
                 <div class="mobile-toggle" id="hamburger">
@@ -134,11 +134,11 @@
 
             <!-- Mobile Nav -->
             <div id="mobileMenu" class="mobile-menu">
-                <a href="/">Home</a>
-                <a href="/about">About</a>
-                <a href="/contact">Contact</a>
-                <a href="/login">Login</a>
-                <a href="/register">Sign Up</a>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+                <a href="register.html">Sign Up</a>
             </div>
         </nav>
     </header>
@@ -149,14 +149,20 @@
             <div class="blob blob2"></div>
             <div class="blob blob3"></div>
         </div>
-        <!-- <div class="background-icons">
-            <i class="floating-icons icon-brain" data-lucide="brain"></i>
-            <i class="floating-icons icon-puzzle" data-lucide="puzzle"></i>
-            <i class="floating-icons icon-earth" data-lucide="earth"></i>
-            <i class="floating-icons icon-notebook" data-lucide="notebook-text"></i>
-            <i class="floating-icons icon-forward" data-lucide="forward"></i>
-            <i class="floating-icons icon-share" data-lucide="share-2"></i>
-        </div> -->
+        
+        <!-- Enhanced Background Icons -->
+        <div class="background-icons">
+            <i class="floating-icons icon-brain" data-lucide="brain" data-label="Think" style="color: #ff6b6b;"></i>
+            <i class="floating-icons icon-puzzle" data-lucide="puzzle" data-label="Solve" style="color: #4ecdc4;"></i>
+            <i class="floating-icons icon-earth" data-lucide="earth" data-label="Explore" style="color: #45b7d1;"></i>
+            <i class="floating-icons icon-notebook" data-lucide="notebook-text" data-label="Learn" style="color: #f9ca24;"></i>
+            <i class="floating-icons icon-forward" data-lucide="forward" data-label="Progress" style="color: #6c5ce7;"></i>
+            <i class="floating-icons icon-share" data-lucide="share-2" data-label="Share" style="color: #fd79a8;"></i>
+            <i class="floating-icons icon-trophy" data-lucide="trophy" data-label="Win" style="color: #fdcb6e;"></i>
+            <i class="floating-icons icon-target" data-lucide="target" data-label="Focus" style="color: #e17055;"></i>
+            <i class="floating-icons icon-zap" data-lucide="zap" data-label="Energy" style="color: #00b894;"></i>
+            <i class="floating-icons icon-star" data-lucide="star" data-label="Excel" style="color: #a29bfe;"></i>
+        </div>
 
         <div class="headline">
             <h1 class="child-1" data-aos="fade-right" data-aos-delay="300" data-aos-duration="1000">Create.</h1>
@@ -166,7 +172,7 @@
         <h2 class="subtext"><em>"Inquizzitive lets you craft interactive quizzes and test knowledge — your way"</em>
         </h2>
         <div class="cta">
-            <a href="">Create a Quiz</a>
+            <a href="create-a-quiz.html">Create a Quiz</a>
         </div>
         <div class="illustration" data-label="Just For Fun!">
             <input id="checkbox-input" type="checkbox" />
@@ -296,7 +302,7 @@
                 </div>
             </div>
         </div>
-        <a href="#" class="cta-button">🚀 Dive In Now!</a>
+        <a href="create-a-quiz.html" class="cta-button">🚀 Dive In Now!</a>
     </section>
 
     <!-- Popular Quiz  -->
@@ -308,7 +314,7 @@
                     <span class="detail-quiz" data-title="Naruto Quiz" data-difficulty="Medium" data-time="10 Mins"
                         data-questions="25" data-category="Anime" data-lucide="circle-alert"></span>
                 </h3>
-                <a href="" class="quiz-link" data-label="Start Quiz">
+                <a href="play-quiz.html" class="quiz-link" data-label="Start Quiz">
                     <img src="assets/images/op-quiz.avif" alt="">
                     <div class="quiz-details">
                         <hr>
@@ -331,7 +337,7 @@
                     </div>
                 </a>
                 <hr>
-                <a href="" class="username-link" data-label="View Author"><img src="assets/images/profile.jpeg"
+                <a href="profile.html" class="username-link" data-label="View Author"><img src="assets/images/profile.jpeg"
                         alt="">Username</a>
             </div>
             <div class="quiz-card">
@@ -339,7 +345,7 @@
                     <span class="detail-quiz" data-title="Naruto Quiz" data-difficulty="Medium" data-time="10 Mins"
                         data-questions="25" data-category="Anime" data-lucide="circle-alert"></span>
                 </h3>
-                <a href="" class="quiz-link" data-label="Start Quiz">
+                <a href="play-quiz.html" class="quiz-link" data-label="Start Quiz">
                     <img src="assets/images/op-quiz.avif" alt="">
                     <div class="quiz-details">
                         <hr>
@@ -362,7 +368,7 @@
                     </div>
                 </a>
                 <hr>
-                <a href="" class="username-link" data-label="View Author"><img src="assets/images/profile.jpeg"
+                <a href="profile.html" class="username-link" data-label="View Author"><img src="assets/images/profile.jpeg"
                         alt="">Username</a>
             </div>
             <div class="quiz-card">
@@ -370,7 +376,7 @@
                     <span class="detail-quiz" data-title="Hello Quiz" data-difficulty="Medium" data-time="10 Mins"
                         data-questions="25" data-category="Anime" data-lucide="circle-alert"></span>
                 </h3>
-                <a href="" class="quiz-link" data-label="Start Quiz">
+                <a href="play-quiz.html" class="quiz-link" data-label="Start Quiz">
                     <img src="assets/images/op-quiz.avif" alt="">
                     <div class="quiz-details">
                         <hr>
@@ -393,7 +399,7 @@
                     </div>
                 </a>
                 <hr>
-                <a href="" class="username-link" data-label="View Author"><img src="assets/images/profile.jpeg"
+                <a href="profile.html" class="username-link" data-label="View Author"><img src="assets/images/profile.jpeg"
                         alt="">Username</a>
             </div>
             <div class="quiz-card">
@@ -401,7 +407,7 @@
                     <span class="detail-quiz" data-title="Hello Quiz" data-difficulty="Medium" data-time="10 Mins"
                         data-questions="25" data-category="Anime" data-lucide="circle-alert"></span>
                 </h3>
-                <a href="" class="quiz-link" data-label="Start Quiz">
+                <a href="play-quiz.html" class="quiz-link" data-label="Start Quiz">
                     <img src="assets/images/op-quiz.avif" alt="">
                     <div class="quiz-details">
                         <hr>
@@ -424,7 +430,7 @@
                     </div>
                 </a>
                 <hr>
-                <a href="" class="username-link" data-label="View Author"><img src="assets/images/profile.jpeg"
+                <a href="profile.html" class="username-link" data-label="View Author"><img src="assets/images/profile.jpeg"
                         alt="">Username</a>
             </div>
         </div>
@@ -432,7 +438,7 @@
         <h1 class="section-title"><span id="glitch-text" class="glitch-animation">Popular</span> Quizzes</h1>
         <div class="quiz-container">
             <div class="quiz-card-2">
-                <a href="#" data-label="Start Quiz" class="quiz-link"
+                <a href="play-quiz.html" data-label="Start Quiz" class="quiz-link"
                     style="background-image: url('assets/images/op-quiz.avif');">
                     <div class="hover-icon">
                         <i class="mouse-icon" data-lucide="mouse"></i>
@@ -462,13 +468,13 @@
                         <div><i class="qei-icons" data-lucide="bar-chart-3"></i> <span>4.2k Attempts</span></div>
                     </div>
                 </a>
-                <a href="" class="quiz-author-link" data-label="View Author">
+                <a href="profile.html" class="quiz-author-link" data-label="View Author">
                     <img src="assets/images/profile.jpeg" alt="Author Avatar" />
                     <span>Username</span>
                 </a>
             </div>
             <div class="quiz-card-2">
-                <a href="#" data-label="Start Quiz" class="quiz-link"
+                <a href="play-quiz.html" data-label="Start Quiz" class="quiz-link"
                     style="background-image: url('assets/images/op-quiz.avif');">
                     <div class="hover-icon">
                         <i class="mouse-icon" data-lucide="mouse"></i>
@@ -498,13 +504,13 @@
                         <div><i class="qei-icons" data-lucide="bar-chart-3"></i> <span>4.2k Attempts</span></div>
                     </div>
                 </a>
-                <a href="" class="quiz-author-link" data-label="View Author">
+                <a href="profile.html" class="quiz-author-link" data-label="View Author">
                     <img src="assets/images/profile.jpeg" alt="Author Avatar" />
                     <span>Username</span>
                 </a>
             </div>
             <div class="quiz-card-2">
-                <a href="#" data-label="Start Quiz" class="quiz-link"
+                <a href="play-quiz.html" data-label="Start Quiz" class="quiz-link"
                     style="background-image: url('assets/images/op-quiz.avif');">
                     <div class="hover-icon">
                         <i class="mouse-icon" data-lucide="mouse"></i>
@@ -534,13 +540,13 @@
                         <div><i class="qei-icons" data-lucide="bar-chart-3"></i> <span>4.2k Attempts</span></div>
                     </div>
                 </a>
-                <a href="" class="quiz-author-link" data-label="View Author">
+                <a href="profile.html" class="quiz-author-link" data-label="View Author">
                     <img src="assets/images/profile.jpeg" alt="Author Avatar" />
                     <span>Username</span>
                 </a>
             </div>
             <div class="quiz-card-2">
-                <a href="#" data-label="Start Quiz" class="quiz-link"
+                <a href="play-quiz.html" data-label="Start Quiz" class="quiz-link"
                     style="background-image: url('assets/images/op-quiz.avif');">
                     <div class="hover-icon">
                         <i class="mouse-icon" data-lucide="mouse"></i>
@@ -570,7 +576,7 @@
                         <div><i class="qei-icons" data-lucide="bar-chart-3"></i> <span>4.2k Attempts</span></div>
                     </div>
                 </a>
-                <a href="" class="quiz-author-link" data-label="View Author">
+                <a href="profile.html" class="quiz-author-link" data-label="View Author">
                     <img src="assets/images/profile.jpeg" alt="Author Avatar" />
                     <span>Username</span>
                 </a>
@@ -585,8 +591,8 @@
             <div class="testimonial-card">
                 <i class="quote-icon" data-lucide="quote"></i>
                 <p class="testimonial-text">
-                    “Absolutely love the quizzes! Clean UI and super fast. My students are actually excited to
-                    participate.”
+                    "Absolutely love the quizzes! Clean UI and super fast. My students are actually excited to
+                    participate."
                 </p>
                 <div class="testimonial-author">
                     <img src="assets/images/profile.jpeg" alt="User" />
@@ -606,8 +612,8 @@
             <div class="testimonial-card">
                 <i class="quote-icon" data-lucide="quote"></i>
                 <p class="testimonial-text">
-                    “Absolutely love the quizzes! Clean UI and super fast. My students are actually excited to
-                    participate.”
+                    "Absolutely love the quizzes! Clean UI and super fast. My students are actually excited to
+                    participate."
                 </p>
                 <div class="testimonial-author">
                     <img src="assets/images/profile.jpeg" alt="User" />
@@ -627,8 +633,8 @@
             <div class="testimonial-card">
                 <i class="quote-icon" data-lucide="quote"></i>
                 <p class="testimonial-text">
-                    “Absolutely love the quizzes! Clean UI and super fast. My students are actually excited to
-                    participate.”
+                    "Absolutely love the quizzes! Clean UI and super fast. My students are actually excited to
+                    participate."
                 </p>
                 <div class="testimonial-author">
                     <img src="assets/images/profile.jpeg" alt="User" />
@@ -649,7 +655,7 @@
             <div class="testimonial-card">
                 <i class="quote-icon" data-lucide="quote"></i>
                 <p class="testimonial-text">
-                    “Great platform for making quick, custom quizzes. The glitch transitions and themes are on point!”
+                    "Great platform for making quick, custom quizzes. The glitch transitions and themes are on point!"
                 </p>
                 <div class="testimonial-author">
                     <img src="assets/images/profile.jpeg" alt="User" />
@@ -675,7 +681,7 @@
 
         <div class="cta-content" id="cta-content">
             <h2 class="cta-heading">Ready to challenge minds?</h2>
-            <a href="#" class="cta-btn">🎯 Create a Quiz</a>
+            <a href="create-a-quiz.html" class="cta-btn">🎯 Create a Quiz</a>
         </div>
         <!-- OR Text -->
         <div class="cta-or" id="cta-or">
@@ -709,10 +715,10 @@
             <div class="footer-column">
                 <h4>Explore</h4>
                 <ul>
-                    <li><i class="footer-icon" data-lucide="home"></i> <a href="#">Home</a></li>
-                    <li><i class="footer-icon" data-lucide="sparkles"></i> <a href="#">Popular Quizzes</a></li>
-                    <li><i class="footer-icon" data-lucide="plus-circle"></i> <a href="#">Create Quiz</a></li>
-                    <li><i class="footer-icon" data-lucide="list-checks"></i> <a href="#">My Quizzes</a></li>
+                    <li><i class="footer-icon" data-lucide="home"></i> <a href="index.html">Home</a></li>
+                    <li><i class="footer-icon" data-lucide="sparkles"></i> <a href="index.html#popular-quizzes">Popular Quizzes</a></li>
+                    <li><i class="footer-icon" data-lucide="plus-circle"></i> <a href="create-a-quiz.html">Create Quiz</a></li>
+                    <li><i class="footer-icon" data-lucide="list-checks"></i> <a href="my-quizzes.html">My Quizzes</a></li>
                 </ul>
             </div>
 
@@ -720,10 +726,10 @@
             <div class="footer-column">
                 <h4>Resources</h4>
                 <ul>
-                    <li><i class="footer-icon" data-lucide="help-circle"></i> <a href="#">Help</a></li>
-                    <li><i class="footer-icon" data-lucide="shield-question"></i> <a href="#">FAQ</a></li>
-                    <li><i class="footer-icon" data-lucide="file-text"></i> <a href="#">Terms</a></li>
-                    <li><i class="footer-icon" data-lucide="lock"></i> <a href="#">Privacy</a></li>
+                    <li><i class="footer-icon" data-lucide="help-circle"></i> <a href="help.html">Help</a></li>
+                    <li><i class="footer-icon" data-lucide="shield-question"></i> <a href="faq.html">FAQ</a></li>
+                    <li><i class="footer-icon" data-lucide="file-text"></i> <a href="terms.html">Terms</a></li>
+                    <li><i class="footer-icon" data-lucide="lock"></i> <a href="privacy.html">Privacy</a></li>
                 </ul>
             </div>
 
@@ -743,11 +749,6 @@
             <p>© 2025 Inquizzitive. All rights reserved.</p>
         </div>
     </footer>
-
-
-
-
-
 
     <!-- Modal/Alert -->
     <div class="quiz-modal" id="quiz-modal">
@@ -776,10 +777,7 @@
             </table>
         </div>
     </div>
-    <!-- This Modal has a issue, will fix it while working on the backend if needed -->
 
-
-    </div>
     <script src="assets/js/navbar.js"></script>
     <script src="assets/js/home.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
