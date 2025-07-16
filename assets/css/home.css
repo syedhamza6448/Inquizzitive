@@ -1194,6 +1194,10 @@ body.dark-mode .popular-quiz {
   overflow: hidden; /* Prevent overflow */
 }
 
+body.dark-mode .cta-wrapper {
+  --color: #7272724d;
+}
+
 .cta-circle {
   position: fixed;
   left: 50%;
